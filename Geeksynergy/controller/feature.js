@@ -3,7 +3,7 @@ const router = express.Router();
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
 const { feature } = require("../model/feature");
-
+var get_ip = require('ipware')().get_ip;
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 router.get("/", async (req, res) => {
   try {
@@ -35,8 +35,14 @@ router.post("/insert", urlencodedParser, async (req, res) => {
 router.post(
   "/react",
   async (req, res) => {
-    const { feed, like, uid } = req.body;
+    const { feed, like} = req.body;
     const dbPost = await feature.findById(feed);
+
+    var ip_info = get_ip(req);
+    var uid =  ip_info.clientIp
+    //  console.log("xcfvgbh",);
+
+
     try {
       if (!dbPost) {
         return res.status(401).json({ msg: "Feed does not exist anymore." });
