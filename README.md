@@ -7,6 +7,11 @@ Clone the repo then
 ## To run the app (React App)
 
 cd app/ && npm start
-##I am using 
-###For anonymous user
+## I am using 
+### For anonymous user
 var get_ip = require('ipware')().get_ip;
+
+## api to list all item with voting.
+localhost:5000/
+## api to insert item.
+localhost:5000/insert
